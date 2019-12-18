@@ -3,7 +3,9 @@ const flattenUnique = array =>
     .reduce(
       (output, element) => [
         ...output,
-        ...(typeof element === "object" ? flattenUnique(element) : [element])
+        ...(typeof element === "object" && element instanceof Array
+          ? flattenUnique(element)
+          : [element])
       ],
       []
     )
